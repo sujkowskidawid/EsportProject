@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:form="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Games</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--online css-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}" type="text/css">
+</head>
+<body class="p-3 mb-2 bg-dark text-white">
+
+<div th:replace="fragments/top_bar.html :: div.top-bar"></div>
+<div th:replace="fragments/scripts.html :: div.scripts-top-bar"></div>
+<div class="media position-relative">
+
+    <img src="https://6.allegroimg.com/s1024/0c2d00/450c6a3249be9fc8d80bd9c22a56" class="" alt="" width="260"
+         height="300">
+    <div class="media-body">
+        <h5 class="mt-0"></h5>
+        <a href="csgo" class="stretched-link"></a>
+    </div>
+</div>
+<div class="media position-relative">
+    <img src="https://lh3.googleusercontent.com/proxy/G-0B2fDUgc2YcxTWfWOW8A7OjTh5yid-rJaBrBvLX1aQuKwqKz2g53b_bFbPtT4Bnq4IyyXJnUjOceZ-zZFDyT7dFo653Jyem0imWZonXPtZKScppDOr_VSgtREgvdCjKA"
+         class="" alt="" width="450" height="200">
+    <div class="media-body">
+        <h5 class="mt-0"></h5>
+        <a href="lol" class="stretched-link"></a>
+    </div>
+</div>
+</body>
+</html>
