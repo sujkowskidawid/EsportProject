@@ -50,13 +50,13 @@ public class LolController {
             for (int u = 0; u < opponentsArray.length(); u++) {
                 JSONObject nameObject = opponentsArray.getJSONObject(u);
                 JSONObject name2Object = nameObject.getJSONObject("opponent");
-                gameInfo.setImage(name2Object.get("image_key").toString());
+                gameInfo.setImage(name2Object.get("image_url").toString());
                 gameInfo.setName(name2Object.getString("name"));
             }
             JSONArray gamesArray = rootObject.getJSONArray("games");
             for(int y = 0; y < gamesArray.length(); y++){
                 JSONObject winnerObject = gamesArray.getJSONObject(y);
-                gameInfo.setWinner( winnerObject.getString("winner_type"));
+                gameInfo.setWinner( winnerObject.get("winner_type").toString());
             }
             JSONObject leagueObject = rootObject.getJSONObject("league");
             gameInfo.setLeague(leagueObject.getString("name"));

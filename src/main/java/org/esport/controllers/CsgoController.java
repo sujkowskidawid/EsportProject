@@ -50,7 +50,7 @@ public class CsgoController {
             for (int u = 0; u < opponentsArray.length(); u++) {
                 JSONObject nameObject = opponentsArray.getJSONObject(u);
                 JSONObject name2Object = nameObject.getJSONObject("opponent");
-                gameInfo.setImage(name2Object.get("image_key").toString());
+                gameInfo.setImage(name2Object.get("image_url").toString());
                 gameInfo.setName(name2Object.getString("name"));
             }
             JSONArray gamesArray = rootObject.getJSONArray("games");
