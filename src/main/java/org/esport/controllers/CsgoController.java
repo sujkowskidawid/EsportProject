@@ -17,12 +17,13 @@ import java.util.List;
 @Controller
 public class CsgoController {
 
+    private List<GameInfo> gameInfoList;
+
     @RequestMapping(value = "/csgo", method = RequestMethod.GET)
     public String connectCSGO(Model model) {
-        GameInfo gameInfo = new GameInfo();
-        model.addAttribute("csgo", gameInfo);
         String response = connectCSGO();
         parseJson(response);
+        model.addAttribute("gameList", gameInfoList);
         return "/csgo";
 
     }
@@ -31,6 +32,7 @@ public class CsgoController {
         String response = null;
         try {
             response = new HttpService().connect(Config.APP_URL + "?token=" + Config.APP_ID);
+            System.out.println(response);
         } catch (IOException e) {
             e.printStackTrace();
             response = "404";
@@ -39,32 +41,39 @@ public class CsgoController {
     }
 
     private void parseJson(String json) {
-
-        List<GameInfo> gameInfoList = new ArrayList<>();
+        gameInfoList = new ArrayList<>();
         JSONArray rootArray = new JSONArray(json);
-        JSONObject rootObject = rootArray.getJSONObject(0);
-        for (int i = 0; i < rootObject.length(); i++) {
+        for (int i = 0; i < rootArray.length(); i++) {
+            JSONObject rootObject = rootArray.getJSONObject(i);
             GameInfo gameInfo = new GameInfo();
-            gameInfo.setDate(rootObject.getString("begin_at"));
-            JSONArray opponentsArray = rootObject.getJSONArray("opponents");
-            for (int u = 0; u < opponentsArray.length(); u++) {
-                JSONObject nameObject = opponentsArray.getJSONObject(u);
-                JSONObject name2Object = nameObject.getJSONObject("opponent");
-                gameInfo.setImage(name2Object.get("image_url").toString());
-                gameInfo.setName(name2Object.getString("name"));
-            }
-            JSONArray gamesArray = rootObject.getJSONArray("games");
-            for(int y = 0; y < gamesArray.length(); y++){
-                JSONObject winnerObject = gamesArray.getJSONObject(y);
-               gameInfo.setWinner( winnerObject.getString("winner_type"));
-            }
-            JSONObject leagueObject = rootObject.getJSONObject("league");
-            gameInfo.setLeague(leagueObject.getString("name"));
-            gameInfo.setStatus(rootObject.getString("status"));
-            gameInfo.setStream(rootObject.get("official_stream_url").toString());
 
+            JSONArray opponents = rootObject.getJSONArray("opponents");
+
+            if (opponents.length() > 1 && opponents.getJSONObject(1) != null && opponents.getJSONObject(0) != null) {
+                JSONObject opponent1 = opponents.getJSONObject(0).getJSONObject("opponent");
+                JSONObject opponent2 = opponents.getJSONObject(1).getJSONObject("opponent");
+
+
+                gameInfo.setLogoOpponent1(opponent1.get("image_url").toString());
+                gameInfo.setNameOpponent1(opponent1.getString("name"));
+                gameInfo.setLogoOpponent2(opponent2.get("image_url").toString());
+                gameInfo.setNameOpponent2(opponent2.getString("name"));
+
+                JSONObject leagueObject = rootObject.getJSONObject("league");
+                gameInfo.setLeague(leagueObject.getString("name"));
+                gameInfo.setLogoLeague(leagueObject.get("image_url").toString());
+                gameInfo.setLeagueInfo(leagueObject.get("url").toString());
+
+                gameInfo.setStatus(rootObject.getString("status"));
+                gameInfo.setStream(rootObject.get("official_stream_url").toString());
+                gameInfo.setDate(rootObject.get("begin_at").toString());
+
+                gameInfoList.add(gameInfo);
+            }
         }
     }
 }
+
+
 
 

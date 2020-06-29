@@ -2,13 +2,14 @@
 <html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:form="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>LOL</title>
+    <title>League of Legends</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--online css-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/css/main.css" th:href="@{/css/main.css}" type="text/css">
+
 </head>
 <body class="p-3 mb-2 bg-dark text-white">
 
@@ -16,20 +17,51 @@
 <div th:replace="fragments/scripts.html :: div.scripts-top-bar"></div>
 <div class="container">
     <div id="title">
-        <h1>Lista Meczów</h1>
+        <h1 style="text-align:center;">Match List</h1>
     </div>
-    <table class="table table-striped text-white">
+    <table class="table table-striped text-white center " style="width:120%" >
         <thead>
         <tr class="text-white">
-            <th>Lista</th>
+            <th> </th>
+            <th>Team Name</th>
+            <th> </th>
+            <th>Team Name</th>
+            <th> </th>
+            <th>Date</th>
+            <th>Live Stream</th>
+            <th>League</th>
+            <th> </th>
+            <th>More about league</th>
+
+
+
         </tr>
         </thead>
         <tbody>
+        <tr class="result" data-th-each="game : ${gameList}">
+
+            <td><img th:src="${game.logoOpponent1}"  width="70" height="70" alt="NO LOGO"></td>
+            <td th:text="${game.nameOpponent1}"></td>
+            <th>VERSUS</th>
+            <td th:text="${game.nameOpponent2}"></td>
+            <td>
+                <img th:src="${game.logoOpponent2}"  width="70" height="70" alt="NO LOGO">
+            </td>
+            <td th:text="${game.date} "/>
+
+            <td>
+                <span><a th:href="${game.stream != null} ? ${game.stream} :'To Be Announced' " target="_blank">Link!</a></span>
+            </td>
+            <td th:text="${game.league}"/>
+            <td>
+                <img th:src="${game.logoLeague}" width="70" height="70" alt="NO LOGO">
+            </td>
+            <td>
+                <a th:href="${game.leagueInfo != null} ?${game.leagueInfo} :'No Link Available'" target="_blank">Link!</a>
+            </td>
         </tr>
         </tbody>
     </table>
-
-
 </div>
 
 

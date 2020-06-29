@@ -16,20 +16,52 @@
 <div th:replace="fragments/scripts.html :: div.scripts-top-bar"></div>
 <div class="container">
     <div id="title">
-        <h1>Lista Meczów</h1>
+        <h1 style="text-align:center;">Match List</h1>
     </div>
-    <table class="table table-striped text-white">
+    <table class="table table-striped text-white" style="width:100%; margin-left:auto;margin-right:auto;" >
         <thead>
         <tr class="text-white">
-            <th>Lista</th>
+            <th> </th>
+            <th>Team Name</th>
+            <th> </th>
+            <th>Team Name</th>
+            <th> </th>
+            <th>Date</th>
+            <th>Live Stream</th>
+            <th>League</th>
+            <th> </th>
+            <th>More about league</th>
+
+
+
         </tr>
         </thead>
         <tbody>
+        <tr class="result" data-th-each="game : ${gameList}">
+
+            <td><img th:src="${game.logoOpponent1}"  width="70" height="70" alt="NO LOGO"></td>
+            <td th:text="${game.nameOpponent1}"></td>
+            <th>VERSUS</th>
+            <td th:text="${game.nameOpponent2}"></td>
+            <td>
+                <img th:src="${game.logoOpponent2}"  width="70" height="70" alt="NO LOGO">
+            </td>
+            <td th:text="${game.date} "/>
+
+            <td>
+                <span><a th:href="${game.stream} ?:'To Be Announced' " target="_blank">Link!</a></span>
+            </td>
+            <td th:text="${game.league}"/>
+            <td>
+                <img th:src="${game.logoLeague}" width="100" height="70" alt="NO LOGO">
+            </td>
+            <td>
+                <a th:href="${game.leagueInfo} ? 'NULL' : 'No Link Available'"target="_blank">Link!</a>
+            </td>
+
         </tr>
         </tbody>
     </table>
-
-
 </div>
 
 

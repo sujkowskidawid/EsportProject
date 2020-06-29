@@ -1,0 +1,7 @@
+MainApp.class
+org\esport\controllers\IndexController.class
+org\esport\HttpService.class
+org\esport\Config.class
+org\esport\controllers\ChooseController.class
+org\esport\models\GamesDatabase.class
+org\esport\models\Games.class

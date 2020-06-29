@@ -9,7 +9,6 @@ public class ChooseController {
 
     @GetMapping("/choose")
     public String chooseGame() {
-
         return "/choose";
     }}
 
