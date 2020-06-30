@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:form="http://www.w3.org/1999/html">
+<html lang="pl"  xmlns="http://www.w3.org/1999/xhtml"
+                      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>CS:GO</title>
@@ -56,7 +57,7 @@
                 <img th:src="${game.logoLeague}" width="100" height="70" alt="NO LOGO">
             </td>
             <td>
-                <a th:href="${game.leagueInfo} ? 'NULL' : 'No Link Available'"target="_blank">Link!</a>
+                <a th:href="${game.leagueInfo} ?: 'No Link Available'"target="_blank">Link!</a>
             </td>
 
         </tr>
