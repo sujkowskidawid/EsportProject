@@ -24,7 +24,7 @@ public class LolController {
         String response = connectLOL();
         parseJson(response);
         model.addAttribute("gameList", gameInfoList);
-        return "/lol";
+        return "lol";
 
     }
 

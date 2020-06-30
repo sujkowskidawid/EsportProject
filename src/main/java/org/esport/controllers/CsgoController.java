@@ -24,7 +24,7 @@ public class CsgoController {
         String response = connectCSGO();
         parseJson(response);
         model.addAttribute("gameList", gameInfoList);
-        return "/csgo";
+        return "csgo";
 
     }
 
