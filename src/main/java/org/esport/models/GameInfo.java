@@ -26,4 +26,11 @@ public class GameInfo {
     private String logoLeague;
     private String leagueInfo;
 
+    public String getStream() {
+        return stream != null && !stream.isEmpty() && !stream.contains("null") ? stream : "nostream";
+    }
+    public String getLeagueInfo() {
+        return leagueInfo != null && !leagueInfo.isEmpty() && !leagueInfo.contains("null") ? leagueInfo : "nolink";
+    }
+
 }

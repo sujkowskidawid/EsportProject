@@ -10,4 +10,10 @@ public class IndexController {
     public String indexGet() {
         return "index";
     }
+
+    @GetMapping("/nolink")
+    public String noLinkGet(){return "nolink";}
+
+    @GetMapping("/nostream")
+    public String noStreamGet(){return "nostream";}
 }
